@@ -5,18 +5,24 @@ import Preloader from './Preloader'
 import MainGame from './MainGame'
 
 const sizes = {
-  width:1000,
-  height:500
+  width:1200,
+  height:600
 }
 
 
 const config = {
   type:Phaser.WEBGL,
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '#d3d3d3',
   width:sizes.width,
   height:sizes.height,
   canvas:gameCanvas,
-  scene: [Boot, Preloader, MainGame]
+  scene: [Boot, Preloader, MainGame],
+  physics: {
+    default: 'arcade',
+    arcade: {debug: false}
+  }
 }
 
+
 const game = new Phaser.Game(config)
+

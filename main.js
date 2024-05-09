@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import Boot from './Boot'
 import Preloader from './Preloader'
 import MainGame from './MainGame'
+import DecorateScene from './DecorateScene'
 
 const sizes = {
   width:1200,
@@ -16,10 +17,10 @@ const config = {
   width:sizes.width,
   height:sizes.height,
   canvas:gameCanvas,
-  scene: [Boot, Preloader, MainGame],
+  scene: [Boot, Preloader, MainGame, DecorateScene],
   physics: {
     default: 'arcade',
-    arcade: {debug: false}
+    arcade: {debug: true}
   }
 }
 

@@ -18,6 +18,9 @@ export default class Preloader extends Phaser.Scene
         this.load.image("empty" , '/assets/EmptyWaterBowl.png');
         this.load.image("sponge", '/assets/Sponge.png');
         this.load.image('decorate', '/assets/Decorate.png');
+        this.load.image('dogBed' , '/assets/decorations/DogBed.png')
+        this.load.image('ballTub', '/assets/decorations/ballTub.png');
+        this.load.image('dogToy', '/assets/decorations/dogToy.png');
         
         //Audio
         this.load.audio('EatSound', '/assets/sounds/Eat.wav');

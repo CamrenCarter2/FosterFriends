@@ -9,5 +9,7 @@ export default class Food extends Phaser.GameObjects.Sprite {
         this.setScale(0.05); // Set the scale
         this.setInteractive();  // Make it interactive 
 
+        
+
     }
 }

@@ -9,7 +9,7 @@ export default class Waterbowl extends Phaser.GameObjects.Sprite {
 
         this.body.setImmovable(true); // Prevent it from being moved by collisions
 
-        this.setScale(0.09);
+        this.setScale(0.11);
 
         this.isFull = false; // Tracks if the waterbowl has water in it
     }

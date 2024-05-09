@@ -3,6 +3,7 @@ import Food from "./Food";
 import PetHealthDisplay from "./PetHealthDisplay";
 import Waterbowl from "./WaterBowl";
 import BathSponge from "./BathSponge";
+import globalData from "./dataManager";
 
 export default class MainGame extends Phaser.Scene
 {
@@ -16,8 +17,6 @@ export default class MainGame extends Phaser.Scene
     }    
     create ()
     {
-        let lastX = -1; 
-        let lastY = -1;
         this.days = 7;
         this.isDrinking = false;
         this.waterTrips = 100;
@@ -86,7 +85,7 @@ export default class MainGame extends Phaser.Scene
         this.decorate.setInteractive();
 
         this.decorate.on('pointerover', this.hoverStartDecorate, this);
-        this.decorate.on('pointerup', () => this.clickDownDecorate(this.game), this);
+        this.decorate.on('pointerdown', () => this.clickDownDecorate(this.game), this);
         this.decorate.on('pointerout', this.hoverEndDecorate, this);
 
         this.waterBowl.on('pointerdown', this.fillWater, this);
@@ -104,7 +103,7 @@ export default class MainGame extends Phaser.Scene
     timerElapsed() {
         this.days -= 1;
         if(this.days < 0){
-            this.days = 0; 
+            this.days = 0;
             this.myAnimal.destroy();
         }
         this.timeLeft.setText('Days Remaining: ' + this.days);
@@ -166,34 +165,10 @@ export default class MainGame extends Phaser.Scene
     }
 
     clickDownDecorate() {
-        //Not Finished or Functioning
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.click();
-      
-        fileInput.onchange = (event) => { 
-          const file = event.target.files[0];
-      
-          if (file) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-      
-            reader.onload = () => {
-              // Update the existing texture data
-              this.textures.setTexture('uploadedImage', reader.result); 
-      
-              // If the sprite already exists, update its texture
-              if (this.sprite) {  
-                this.sprite.setTexture('uploadedImage');
-              } else {
-                // Create the sprite if it doesn't
-                this.sprite = this.add.sprite(400, 200, 'uploadedImage'); 
-              }
-            }; 
-          } 
-        }; 
-
+        this.scene.pause();
+        this.scene.launch('DecorateScene');
+        this.scene.resume();
+        globalData[0] = 0;
     }
 
     hoverStartFood () {
@@ -287,5 +262,70 @@ export default class MainGame extends Phaser.Scene
             this.myAnimal.destroy();
             this.display.hide();
         }
+
+        if (globalData[0] == 1) { 
+            if(this.dogBed){
+                this.dogBed.destroy();
+            }
+            this.dogBed = this.add.sprite(200, 200, 'dogBed');
+            this.dogBed.setScale(0.09);
+                this.dogBed.setInteractive();
+                this.input.setDraggable(this.dogBed);
+
+                this.dogBed.on('dragstart', (pointer, dragX, dragY) => {});
+                
+                this.dogBed.on('drag', (pointer, dragX, dragY) => {
+                    this.dogBed.x = dragX;
+                    this.dogBed.y = dragY;
+                });
+                
+                this.dogBed.on('dragend', (pointer) => {
+
+                });
+            globalData[0] = 0;
+        }
+        if (globalData[0] == 2) { 
+            if(this.dogToy){
+                this.dogToy.destroy();
+            }
+            this.dogToy = this.add.sprite(600, 200, 'dogToy');
+            this.dogToy.setScale(0.09);
+                this.dogToy.setInteractive();
+                this.input.setDraggable(this.dogToy);
+
+                this.dogToy.on('dragstart', (pointer, dragX, dragY) => {});
+                
+                this.dogToy.on('drag', (pointer, dragX, dragY) => {
+                    this.dogToy.x = dragX;
+                    this.dogToy.y = dragY;
+                });
+                
+                this.dogToy.on('dragend', (pointer) => {
+
+                });
+            globalData[0] = 0;
+        }
+        if (globalData[0] == 3) { 
+            if(this.ballTub){
+                this.ballTub.destroy();
+            }
+            this.ballTub = this.add.sprite(900, 200, 'ballTub');
+            this.ballTub.setScale(0.09);
+                this.ballTub.setInteractive();
+                this.input.setDraggable(this.ballTub);
+
+                this.ballTub.on('dragstart', (pointer, dragX, dragY) => {});
+                
+                this.ballTub.on('drag', (pointer, dragX, dragY) => {
+                    this.ballTub.x = dragX;
+                    this.ballTub.y = dragY;
+                });
+                
+                this.ballTub.on('dragend', (pointer) => {
+
+                });
+            globalData[0] = 0;
+        }
+        
     }   
 }

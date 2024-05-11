@@ -20,7 +20,7 @@ const config = {
   scene: [Boot, Preloader, MainGame, DecorateScene],
   physics: {
     default: 'arcade',
-    arcade: {debug: true}
+    arcade: {debug: false}
   }
 }
 
